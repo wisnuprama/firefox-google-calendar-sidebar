@@ -27,8 +27,11 @@ async function updateShortcut() {
     authuser: authuserValue
   });
 
-  let authuser = encodeURIComponent(authuserValue);
-  let url = `https://tasks.google.com/u/${authuser}/embed/?origin=https://calendar.google.com&fullWidth=1`;
+  let url = 'https://calendar.google.com/calendar/companion';
+  if (authuserValue !== '') {
+    let authuser = encodeURIComponent(authuserValue);
+    url = `https://calendar.google.com/calendar/u/${authuser}/companion`;
+  }
   browser.sidebarAction.setPanel({
     panel: url
   });

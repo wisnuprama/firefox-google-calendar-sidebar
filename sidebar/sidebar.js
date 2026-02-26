@@ -3,16 +3,16 @@
 setLocation();
 
 async function setLocation() {
-	let authuser = '0';
+  let url = 'https://calendar.google.com/calendar/companion';
   try {
     let res = await browser.storage.sync.get('authuser');
-    if ('authuser' in res) {
-      authuser = encodeURIComponent(res.authuser);
+    if ('authuser' in res && res.authuser !== '') {
+      let authuser = encodeURIComponent(res.authuser);
+      url = `https://calendar.google.com/calendar/u/${authuser}/companion`;
     }
   } catch (e) {
   }
 
-  let url = `https://tasks.google.com/u/${authuser}/embed/?origin=https://calendar.google.com&fullWidth=1`;
   browser.sidebarAction.setPanel({
     panel: url
   })

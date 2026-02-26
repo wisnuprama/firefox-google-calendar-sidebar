@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Google Tasks Sidebar",
-  "description": "Displays Google Tasks in the sidebar.",
+  "name": "Google Calendar Sidebar",
+  "description": "Displays Google Calendar in the sidebar.",
   "version": "2.0.0",
   "browser_specific_settings": {
     "gecko": {
-      "id": "firefox-google-tasks-sidebar@example.com",
+      "id": "firefox-google-calendar-sidebar@example.com",
       "strict_min_version": "109.0"
     }
   },
@@ -14,15 +14,15 @@
   },
   "sidebar_action": {
     "default_icon": {
-      "48": "icons/GoogleTasks.svg",
-      "96": "icons/GoogleTasks.svg"
+      "48": "icons/GoogleCalendar.svg",
+      "96": "icons/GoogleCalendar.svg"
     },
-    "default_title": "Google Tasks",
+    "default_title": "Google Calendar",
     "default_panel": "sidebar/panel.html"
   },
   "icons": {
-    "48": "icons/GoogleTasks.svg",
-    "96": "icons/GoogleTasks.svg"
+    "48": "icons/GoogleCalendar.svg",
+    "96": "icons/GoogleCalendar.svg"
   },
   "permissions": [
     "storage"
@@ -30,9 +30,9 @@
   "commands": {
     "_execute_sidebar_action": {
       "suggested_key": {
-        "default": "Shift+Alt+G"
+        "default": "Shift+Alt+C"
       },
-      "description": "Toggle the Google Tasks sidebar"
+      "description": "Toggle the Google Calendar sidebar"
     }
   }
 }
