@@ -2,13 +2,13 @@
   "manifest_version": 3,
   "name": "Google Calendar Sidebar",
   "description": "Displays Google Calendar in the sidebar.",
-  "version": "2.0.0",
+  "version": "1.0.1",
   "browser_specific_settings": {
     "gecko": {
       "id": "firefox-google-calendar-sidebar@example.com",
       "strict_min_version": "142.0",
       "data_collection_permissions": {
-        "required": []
+        "required": ["none"]
       }
     }
   },
