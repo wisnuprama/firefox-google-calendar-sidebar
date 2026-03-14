@@ -2,7 +2,10 @@ const sidebarToggle = "_execute_sidebar_action";
 
 const DEFAULT_AUTHUSER = "0";
 
-function getCalendarUrl(authUser) {
+function getCalendarUrl(authUser, view) {
+  if (view === "desktop") {
+    return `https://calendar.google.com/calendar/u/${authUser}/r`;
+  }
   return `https://calendar.google.com/calendar/u/${authUser}/gp?hl=en`;
 }
 
@@ -16,27 +19,31 @@ async function updateUI() {
   }
 
   let authuser = "";
+  let view = "mobile";
   try {
-    let res = await browser.storage.sync.get("authuser");
+    let res = await browser.storage.sync.get(["authuser", "view"]);
     if ("authuser" in res) {
       authuser = res.authuser;
     }
+    if ("view" in res) {
+      view = res.view;
+    }
   } catch (e) {}
   document.querySelector("#authuser").value = authuser;
+  document.querySelector("#view").value = view;
 }
 
 // Update shortcut to value of textbox
 async function updateShortcut() {
   let authuserValue = document.querySelector("#authuser").value;
+  let viewValue = document.querySelector("#view").value;
   await browser.storage.sync.set({
     authuser: authuserValue,
+    view: viewValue,
   });
 
-  let url = getCalendarUrl(DEFAULT_AUTHUSER);
-  if (authuserValue !== "") {
-    let authuser = encodeURIComponent(authuserValue);
-    url = getCalendarUrl(authuser);
-  }
+  let authuser = authuserValue !== "" ? encodeURIComponent(authuserValue) : DEFAULT_AUTHUSER;
+  let url = getCalendarUrl(authuser, viewValue);
   browser.sidebarAction.setPanel({
     panel: url,
   });
